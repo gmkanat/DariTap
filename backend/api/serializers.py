@@ -4,6 +4,7 @@ from api.models import User
 from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from utils import messages
+from rest_framework.validators import UniqueValidator
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -19,16 +20,26 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     )
     phone = serializers.CharField(
         required=False,
-        min_length=2,
+        min_length=5,
         max_length=255,
-        validators=[RegexValidator(
-            regex=r'^\+?77(\d{9})$',
-        )],
+        validators=[
+            RegexValidator(
+                regex=r'^\+?77(\d{9})$',
+            ),
+            UniqueValidator(
+                queryset=User.objects.all(),
+            )
+        ],
     )
     email = serializers.EmailField(
         required=True,
         min_length=3,
         max_length=255,
+        validators=[
+            UniqueValidator(
+                queryset=User.objects.all()
+            )
+        ],
     )
     password = serializers.CharField(
         required=False,
@@ -119,3 +130,44 @@ class UserListSerializer(serializers.ModelSerializer):
             'email',
             'phone',
         )
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    phone = serializers.CharField(
+        required=False,
+        min_length=5,
+        max_length=255,
+        validators=[
+            RegexValidator(
+                regex=r'^\+?77(\d{9})$',
+            ),
+        ],
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'phone',
+        )
+
+
+class UserUpdatePasswordSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+        required=True,
+        min_length=8,
+        max_length=64,
+        write_only=True,
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'password',
+        )
+
+    def update(self, instance, validated_data):
+        instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
