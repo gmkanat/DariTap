@@ -21,7 +21,6 @@ class UserViewSet(
     viewsets.GenericViewSet,
 ):
     def get_permissions(self):
-        print('hi')
         if self.action in ["login", "create"]:
             self.permission_classes = (AllowAny,)
         if self.action in [
@@ -33,7 +32,6 @@ class UserViewSet(
         if self.action == "deactivate_profile":
             self.permission_classes = (IsAuthenticated, IsActiveUser)
         if self.action == "activate_profile":
-            print('hihi')
             self.permission_classes = [IsAuthenticated, IsNonActiveUser]
 
         return super().get_permissions()
