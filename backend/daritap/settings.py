@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-b-op93u=my@12oln5=7kp-1i&6**kc!kfv8m@_(^!)qyxteph9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        'utils.authentication.CustomTokenAuthentication',
     ]
 
 

@@ -8,6 +8,7 @@ from mixins.models import (
     TimeStampMixin,
     IsActiveMixin,
 )
+from django.utils.translation import gettext as _
 
 
 class UserManager(BaseUserManager):
@@ -51,48 +52,52 @@ class User(
         max_length=255,
         blank=True,
         null=True,
-        verbose_name='First Name',
+        verbose_name=_('First name'),
     )
     last_name = models.CharField(
         max_length=255,
         blank=True,
         null=True,
-        verbose_name='Last Name',
+        verbose_name=_('Last name'),
     )
     email = models.EmailField(
         max_length=255,
         unique=True,
-        verbose_name='Email',
+        verbose_name=_('Email'),
     )
     phone = models.CharField(
         null=True,
         blank=True,
         max_length=50,
-        verbose_name='Phone'
+        verbose_name=_('Phone'),
     )
     newsletter = models.BooleanField(
         default=False,
-        verbose_name='Newsletter'
+        verbose_name=_('Newsletter'),
     )
 
     is_staff = models.BooleanField(
         default=False,
-        verbose_name='Is Staff',
-        help_text='Is Staff'
+        verbose_name=_('Staff status'),
+        help_text=_('Designates whether the user can log into this admin site.'),
     )
     is_superuser = models.BooleanField(
         default=False,
-        verbose_name='Is Superuser',
-        help_text='Is Superuser'
+        verbose_name=_('Superuser status'),
+        help_text=_('Superuser can do anything.'),
     )
-
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Active status'),
+        help_text=_('Active status of user.'),
+    )
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 
     def __str__(self):
         return self.email
