@@ -1,8 +1,0 @@
-git add .
-git commit -m "message"
-git push
-
-
-# to create a new branch and checkout
-git checkout -b <branch_name>
-
