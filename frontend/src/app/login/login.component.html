@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="login.component.css" rel="stylesheet">
+    <link href="C:\Users\DELL\OneDrive\Документы\3 course\bis\DariTap\frontend\src\app\app.component.css" rel="stylesheet">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="cont">
+        <div class="tp">
+            <div class="gr-box">
+                <div class="gr-box-cont">
+                    <img id="hm-icon" src="assets/images/home.png">
+                    <p id="gr-bx-cnt-p">&nbsp;>  Account &nbsp;</p>
+                    <p id="gr-bx-cnt-p">> Login</p>
+                </div>
+            </div>
+        </div>
+        <div class="mn-cnt">
+            <div class="bxs left-cnt">
+                <div class="ttl">
+                    <h3 class="ttl-cnt">New Customer</h3>
+                </div>
+                <div class="sc">
+                    <p style="font-weight: 600">Register</p>
+                    <div class="hr-ln"></div>
+                    <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+                    <p id="prs-dt">Your Personal Details</p>
+                    <div class="hr-ln"></div>
+                </div>
+                <form class="register-form">
+                    <div class="form-group1">
+                        <label for="fname">First Name<span>*</span>&nbsp;</label>
+                        <input class="inp frst" type="text" name="fname" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group1">
+                        <label for="lname">Last Name<span>*</span>&nbsp;</label>
+                        <input class="inp frst" type="text" name="lname" placeholder="Enter your last name">
+                    </div>
+                    <div class="form-group1">
+                        <label for="email">E-Mail<span>*</span>&nbsp;</label>
+                        <input class="inp frst" type="email" name="email" placeholder="Enter your E-Mail">
+                    </div>
+                    <div class="form-group1">
+                        <label for="telephone">Telephone<span>*</span>&nbsp;</label>
+                        <input class="inp frst" type="tel" name="telephone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group1">
+                        <label for="password">Password<span>*</span>&nbsp;</label>
+                        <input class="inp frst" type="password" name="password" placeholder="Enter your password">
+                    </div>
+                </form>
+                <div class="sbmt">
+                    <button class="bttn" type="submit" form="form1" value="Submit">REGISTER</button>
+                </div>
+            </div>
+            <div class="bxs right-cnt">
+                <div class="ttl">
+                    <h3 class="ttl-cnt">Returning Customer</h3>
+                </div>
+                <div class="sc">
+                    <p style="font-weight: 600" id="rtrn-cstmr">I am a returning customer</p>
+                    <div class="hr-ln"></div>
+                </div>
+                <form class="auth-form" id="form2" action="#" method="#">
+                    <div class="form-group2">
+                        <label for="email">E-Mail Address</label>
+                        <input class="inp" type="email" name="email" placeholder="Enter your E-Mail">
+                    </div>
+                    <div class="form-group2">
+                        <label for="password">Password</label>
+                        <input class="inp" type="password" name="password" placeholder="Enter your password">
+                    </div>
+                </form>
+                <div class="sbmt">
+                    <a href="#" id="frgt-pswrd">Forgotten Password</a>
+                    <button class="bttn" type="submit" form="form2" value="Submit">LOGIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
