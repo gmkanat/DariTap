@@ -154,7 +154,20 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdatePasswordSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
+    old_password = serializers.CharField(
+        required=True,
+        min_length=8,
+        max_length=64,
+        write_only=True,
+    )
+
+    new_password = serializers.CharField(
+        required=True,
+        min_length=8,
+        max_length=64,
+        write_only=True,
+    )
+    repeat_password = serializers.CharField(
         required=True,
         min_length=8,
         max_length=64,
@@ -164,10 +177,26 @@ class UserUpdatePasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'password',
+            'old_password',
+            'new_password',
+            'repeat_password',
         )
 
+    def validate(self, attrs):
+        old_password = attrs.get('old_password', None)
+        new_password = attrs.get('new_password', None)
+        repeat_password = attrs.get('repeat_password', None)
+        if not self.context['request'].user.check_password(old_password):
+            raise serializers.ValidationError(
+                messages.INVALID_PASSWORD
+            )
+        if new_password != repeat_password:
+            raise serializers.ValidationError(
+                messages.PASSWORDS_NOT_MATCH
+            )
+        return attrs
+
     def update(self, instance, validated_data):
-        instance.set_password(validated_data['password'])
+        instance.set_password(validated_data['new_password'])
         instance.save()
         return instance
