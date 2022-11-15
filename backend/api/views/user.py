@@ -1,11 +1,10 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import action
+
 from api.models import User
 from api.permissions import IsActiveUser, IsNonActiveUser
-from utils import messages
-
 from api.serializers import (
     UserRegisterSerializer,
     UserLoginSerializer,
@@ -13,6 +12,7 @@ from api.serializers import (
     UserUpdateSerializer,
     UserUpdatePasswordSerializer,
 )
+from utils import messages
 
 
 class UserViewSet(
