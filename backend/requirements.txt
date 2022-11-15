@@ -9,3 +9,4 @@ djangorestframework==3.13.1
 drf-spectacular==0.22.1
 django-cors-headers==3.10.0
 django-silk==5.0.0
+Pillow==8.4.0

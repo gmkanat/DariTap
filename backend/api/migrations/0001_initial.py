@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Users',
             },
             managers=[
-                ('objects', api.models.UserManager()),
+                ('objects', api.models.user.UserManager()),
             ],
         ),
     ]
