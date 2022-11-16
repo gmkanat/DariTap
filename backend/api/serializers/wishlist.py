@@ -29,7 +29,7 @@ class WishlistSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         wishlist = Wishlist.objects.create(
-            item=validated_data['item'],
+            item_id=validated_data['item'],
             user=self.context['request'].user,
         )
         return wishlist
